@@ -22,6 +22,14 @@ After successfully running this command, you will able to see one docker mongo c
 Let's execute the container. Write this command : 
 - docker exec -it aspnetrun-mongo /bin/bash
 
+Docker container can exit sometimes later. Don't know right now why is that. We will have to manually start that container. For that, execute the following command : 
+- docker ps -a
+
+This will return all containers whether it is running or exited. Copy that ID of the container you want to start and run following command : 
+- docker start ID
+
+Then if you run "docker ps", you will get that container running. "docker ps" only returns the running containers.
+
 This will run this container and move into the container directory. We can write basic commands into that directory like : 
 - ls
 
