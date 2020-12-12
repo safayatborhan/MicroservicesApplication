@@ -70,4 +70,19 @@ db.Products.insertMany(
  
  - db.Products.find({}).pretty() (to get all products in a formatted way)
  
+ --------------------------------------------------------------------
  
+- Add docker compose and dockerfile into project. See code and search for more docker compose reference.
+
+Run following command into Docker-Compose directory.
+- docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+Run this command:
+-docker images
+
+If all things goes well, we will see images of dotnet core sdk, catalogapi and mongo are running. 
+
+Run this command: 
+- docker ps
+
+You will see docker containers of catalogapi and mongo running. This will return endpoint of the api : http://localhost:8000/swagger/index.html
