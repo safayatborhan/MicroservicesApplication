@@ -9,8 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Basket.API.Data;
 using Basket.API.Data.Interfaces;
+using Basket.API.Repositories;
 using Basket.API.Repositories.Interfaces;
+using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 
 namespace Basket.API
@@ -33,8 +36,17 @@ namespace Basket.API
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
-            services.AddTransient<IBasketContext, IBasketContext>();
-            services.AddTransient<IBasketRepository, IBasketRepository>();
+            services.AddTransient<IBasketContext, BasketContext>();
+            services.AddTransient<IBasketRepository, BasketRepository>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Basket API",
+                    Version = "v1"
+                });
+            });
 
             services.AddControllers();
         }
@@ -54,6 +66,12 @@ namespace Basket.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Basket API v1");
             });
         }
     }
