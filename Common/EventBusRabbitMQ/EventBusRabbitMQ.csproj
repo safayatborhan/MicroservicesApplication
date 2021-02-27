@@ -5,14 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Producer\EventBusRabbitMq.Producer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Producer\EventBusRabbitMq.Producer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
 

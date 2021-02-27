@@ -32,25 +32,14 @@ namespace EventBusRabbitMQ
                 return;
             }
 
-            try
-            {
-                _connection.Dispose();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            _connection.Dispose();
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return _connection != null
-                       && _connection.IsOpen
-                       && !_disposed;
-            }
-        }
+        public bool IsConnected =>
+            _connection != null
+            && _connection.IsOpen
+            && !_disposed;
+
         public bool TryConnect()
         {
             try

@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Basket.API.Data;
 using Basket.API.Data.Interfaces;
 using Basket.API.Repositories;
 using Basket.API.Repositories.Interfaces;
 using EventBusRabbitMQ;
+using EventBusRabbitMQ.Producer;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using StackExchange.Redis;
@@ -67,6 +69,10 @@ namespace Basket.API
 
                 return new RabbitMqConnection(factory);
             });
+
+            services.AddSingleton<EventBusRabbitMqProducer>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }
