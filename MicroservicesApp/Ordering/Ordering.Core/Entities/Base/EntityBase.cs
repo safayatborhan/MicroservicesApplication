@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace Ordering.Core.Entities.Base
 {
+
+    /*
+     * Here, we are implementing an Id property, that can be virtual.
+     * Why we are doing this?
+     * There can be different database in infrastructure layer.
+     * Each database will have different type of Id property.
+     * To overcome this, we are using a generic type TId as id property and make it virtual,
+     * so that any one can override as per their need. 
+     */
     public abstract class EntityBase<TId> : IEntityBase<TId>
     {
+        /*
+         * This is a protected set. Why is that?
+         * This Id property could be set in the Entity base class.
+         * That means in the Order.cs
+         */
         public virtual TId Id { get; protected set; }
 
         int? _requestedHashCode;

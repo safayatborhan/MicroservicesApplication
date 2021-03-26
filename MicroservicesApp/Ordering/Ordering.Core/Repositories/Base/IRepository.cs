@@ -11,6 +11,9 @@ namespace Ordering.Core.Repositories.Base
     {
         Task<IReadOnlyList<T>> GetAllAsync();
 
+        /*
+         * predicate sample : ordername equals "something"
+         */
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate); // Expecting a LINQ expression.
 
         Task<IReadOnlyList<T>> GetAsync (Expression<Func<T, bool>> predicate = null, 
